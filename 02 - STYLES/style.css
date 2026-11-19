@@ -1,0 +1,3102 @@
+
+/* =========================================================
+   LOCAL ARABIC FONTS
+========================================================= */
+
+@font-face {
+    font-family: "Alexandria";
+    src: url("../04 - ASSETS/fonts/Alexandria-VariableFont_wght.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Cairo";
+    src: url("../04 - ASSETS/fonts/Cairo-VariableFont_slnt,wght.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 200 900;
+    font-display: swap;
+}
+
+/* =========================================================
+
+AL-SEMMAN CENTERS
+
+QR TRANSIT PAGE
+
+Main Stylesheet
+
+========================================================= */
+
+
+
+/* =========================================================
+
+01\. DESIGN TOKENS
+
+========================================================= */
+
+
+
+:root {
+
+--green: #087a49;
+
+--green-light: #19a878;
+
+--green-dark: #075c3b;
+
+--black: #080b09;
+
+--white: #ffffff;
+
+--text: #202923;
+
+--text-muted: #718078;
+
+--surface: #ffffff;
+
+--surface-soft: #f5f8f6;
+
+--radius-sm: 12px;
+
+--radius-md: 18px;
+
+--radius-lg: 26px;
+
+--shadow-soft: 0 8px 28px rgba(0, 0, 0, 0.07);
+
+--page-width: 1100px;
+
+--transition: 500ms cubic-bezier(.22, 1, .36, 1);
+
+}
+
+
+
+/* =========================================================
+
+02\. RESET
+
+========================================================= */
+
+
+
+* {
+
+margin: 0;
+
+padding: 0;
+
+box-sizing: border-box;
+
+}
+
+
+
+html {
+
+scroll-behavior: smooth;
+
+-webkit-text-size-adjust: 100%;
+
+}
+
+
+
+body {
+
+min-width: 320px;
+
+min-height: 100vh;
+
+font-family: "Alexandria", "Cairo", sans-serif;
+
+background: var(--white);
+
+color: var(--text);
+
+overflow-x: hidden;
+
+}
+
+
+
+button,
+
+a {
+
+font: inherit;
+
+}
+
+
+
+button {
+
+border: 0;
+
+}
+
+
+
+a {
+
+color: inherit;
+
+text-decoration: none;
+
+}
+
+
+
+img {
+
+display: block;
+
+max-width: 100%;
+
+}
+
+
+
+button:focus-visible,
+
+a:focus-visible {
+
+outline: 3px solid var(--green-light);
+
+outline-offset: 4px;
+
+}
+
+
+
+/* =========================================================
+
+03\. APPLICATION LAYOUT
+
+========================================================= */
+
+
+
+#app {
+
+position: relative;
+
+width: 100%;
+
+min-height: 100vh;
+
+}
+
+
+
+.screen {
+
+position: absolute;
+
+inset: 0;
+
+width: 100%;
+
+min-height: 100%;
+
+}
+
+
+
+/* =========================================================
+
+04\. INTRO EXPERIENCE
+
+========================================================= */
+
+
+
+#experience {
+
+position: fixed;
+
+inset: 0;
+
+z-index: 1000;
+
+width: 100%;
+
+height: 100vh;
+
+height: 100dvh;
+
+overflow: hidden;
+
+background: var(--black);
+
+transition:
+
+transform 1100ms cubic-bezier(.76, 0, .24, 1),
+
+opacity 700ms ease;
+
+transform: translateY(0);
+
+}
+
+
+
+#experience.is-finished {
+
+transform: translateY(-100%);
+
+pointer-events: none;
+
+}
+
+
+
+/* =========================================================
+
+05\. GATE SCREEN
+
+========================================================= */
+
+
+
+#gate-screen {
+
+position: absolute;
+
+inset: 0;
+
+z-index: 3;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+background: var(--black);
+
+opacity: 1;
+
+visibility: visible;
+
+transition:
+
+opacity 700ms ease,
+
+visibility 700ms ease;
+
+}
+
+
+
+#experience.intro-started #gate-screen {
+
+opacity: 0;
+
+visibility: hidden;
+
+pointer-events: none;
+
+}
+
+
+
+/* =========================================================
+
+06\. START TOGGLE
+
+========================================================= */
+
+
+
+.start-button {
+
+position: relative;
+
+width: 76px;
+
+height: 42px;
+
+padding: 4px;
+
+border-radius: 50px;
+
+background: #242b27;
+
+cursor: pointer;
+
+transition:
+
+background 400ms ease,
+
+box-shadow 400ms ease;
+
+isolation: isolate;
+
+}
+
+
+
+.toggle-track {
+
+position: relative;
+
+display: block;
+
+width: 100%;
+
+height: 100%;
+
+border-radius: inherit;
+
+}
+
+
+
+.toggle-knob {
+
+position: absolute;
+
+top: 0;
+
+left: 0;
+
+width: 34px;
+
+height: 34px;
+
+border-radius: 50%;
+
+background: var(--green-light);
+
+box-shadow: 0 0 15px rgba(25, 168, 120, .35);
+
+transition:
+
+transform 500ms cubic-bezier(.22, 1, .36, 1),
+
+box-shadow 400ms ease;
+
+}
+
+
+
+.start-button:hover .toggle-knob {
+
+box-shadow: 0 0 25px rgba(25, 168, 120, .7);
+
+}
+
+
+
+.start-button:active .toggle-knob {
+
+transform: scale(.92);
+
+}
+
+
+
+#experience.intro-started .start-button {
+
+pointer-events: none;
+
+}
+
+
+
+/* =========================================================
+
+07\. LOGO INTRO SCREEN
+
+========================================================= */
+
+
+
+#intro-screen {
+
+position: absolute;
+
+inset: 0;
+
+z-index: 2;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+padding: 24px;
+
+/* White background behind the logo */
+
+background: var(--white);
+
+opacity: 0;
+
+visibility: hidden;
+
+transition:
+
+opacity 700ms ease,
+
+visibility 700ms ease;
+
+}
+
+
+
+#experience.intro-started #intro-screen {
+
+opacity: 1;
+
+visibility: visible;
+
+}
+
+
+
+/* =========================================================
+
+08\. LOGO SHARED CANVAS
+
+========================================================= */
+
+
+
+.logo-stage {
+
+position: relative;
+
+width: min(78vw, 430px);
+
+aspect-ratio: 1 / 1;
+
+margin-inline: auto;
+
+}
+
+
+
+.logo-symbol,
+
+.logo-words {
+
+position: absolute;
+
+inset: 0;
+
+width: 100%;
+
+height: 100%;
+
+}
+
+
+
+/*
+
+جميع صور اللوجو لها نفس مساحة العمل.
+
+ممنوع تعديل إحداثيات أي جزء بصورة مستقلة.
+
+*/
+
+
+
+.logo-part {
+
+position: absolute;
+
+inset: 0;
+
+display: block;
+
+width: 100%;
+
+height: 100%;
+
+max-width: none;
+
+max-height: none;
+
+object-fit: contain;
+
+object-position: center;
+
+margin: 0;
+
+padding: 0;
+
+opacity: 0;
+
+visibility: hidden;
+
+transform: none;
+
+will-change: opacity, transform, clip-path;
+
+}
+
+
+
+/* =========================================================
+
+09\. LOGO ANIMATION INITIAL STATES
+
+========================================================= */
+
+
+
+.logo-part.apple,
+
+.logo-part.knee,
+
+.logo-part.leaf,
+
+.logo-part.dots,
+
+.logo-part.human,
+
+.logo-part.logo-name,
+
+.logo-part.logo-description {
+
+opacity: 0;
+
+visibility: hidden;
+
+}
+
+
+
+/* =========================================================
+
+10\. LOGO ANIMATION SEQUENCE
+
+========================================================= */
+
+
+
+/*
+
+ترتيب الحركة:
+
+1\. Apple
+
+2\. Knee
+
+3\. Leaf
+
+4\. Dots
+
+5\. Logo name
+
+6\. Human
+
+7\. Logo description
+
+
+
+JavaScript سيبدأ التسلسل بإضافة .logo-building
+
+إلى #experience.
+
+*/
+
+
+
+#experience.logo-building .logo-part.apple {
+
+animation: appleReveal 850ms cubic-bezier(.22, 1, .36, 1) forwards;
+
+}
+
+
+
+#experience.logo-building .logo-part.knee {
+
+animation: kneeReveal 850ms cubic-bezier(.22, 1, .36, 1) 850ms forwards;
+
+}
+
+
+
+#experience.logo-building .logo-part.leaf {
+
+animation: leafReveal 800ms cubic-bezier(.22, 1, .36, 1) 1700ms forwards;
+
+}
+
+
+
+#experience.logo-building .logo-part.dots {
+
+animation: dotsReveal 1000ms ease-out 2500ms forwards;
+
+}
+
+
+
+#experience.logo-building .logo-part.logo-name {
+
+animation: nameReveal 900ms ease-out 3500ms forwards;
+
+}
+
+
+
+#experience.logo-building .logo-part.human {
+
+animation: humanReveal 1100ms cubic-bezier(.16, 1, .3, 1) 4400ms forwards;
+
+}
+
+
+
+#experience.logo-building .logo-part.logo-description {
+
+animation: descriptionReveal 1000ms ease-out 5500ms forwards;
+
+}
+
+
+
+/* =========================================================
+
+11\. LOGO KEYFRAMES
+
+========================================================= */
+
+
+
+/* Apple: Circular reveal */
+
+
+
+@keyframes appleReveal {
+
+0% {
+
+opacity: 0;
+
+visibility: visible;
+
+clip-path: circle(0% at 50% 50%);
+
+}
+
+100% {
+
+opacity: 1;
+
+visibility: visible;
+
+clip-path: circle(75% at 50% 50%);
+
+}
+
+}
+
+
+
+/* Knee: Circular reveal */
+
+
+
+@keyframes kneeReveal {
+
+0% {
+
+opacity: 0;
+
+visibility: visible;
+
+clip-path: circle(0% at 50% 50%);
+
+}
+
+100% {
+
+opacity: 1;
+
+visibility: visible;
+
+clip-path: circle(75% at 50% 50%);
+
+}
+
+}
+
+
+
+/* Leaf: Soft growth */
+
+
+
+@keyframes leafReveal {
+
+0% {
+
+opacity: 0;
+
+visibility: visible;
+
+transform: scale(.88);
+
+}
+
+100% {
+
+opacity: 1;
+
+visibility: visible;
+
+transform: scale(1);
+
+}
+
+}
+
+
+
+/* Dots: Bottom to top */
+
+
+
+@keyframes dotsReveal {
+
+0% {
+
+opacity: 0;
+
+visibility: visible;
+
+clip-path: inset(100% 0 0 0);
+
+}
+
+100% {
+
+opacity: 1;
+
+visibility: visible;
+
+clip-path: inset(0 0 0 0);
+
+}
+
+}
+
+
+
+/* Logo name */
+
+
+
+@keyframes nameReveal {
+
+0% {
+
+opacity: 0;
+
+visibility: visible;
+
+transform: translateY(12px);
+
+}
+
+100% {
+
+opacity: 1;
+
+visibility: visible;
+
+transform: translateY(0);
+
+}
+
+}
+
+
+
+/* Human: Starts close, then zooms out */
+
+
+
+@keyframes humanReveal {
+
+0% {
+
+opacity: 0;
+
+visibility: visible;
+
+transform: scale(1.8);
+
+}
+
+100% {
+
+opacity: 1;
+
+visibility: visible;
+
+transform: scale(1);
+
+}
+
+}
+
+
+
+/* Arabic description */
+
+
+
+@keyframes descriptionReveal {
+
+0% {
+
+opacity: 0;
+
+visibility: visible;
+
+clip-path: inset(0 100% 0 0);
+
+}
+
+100% {
+
+opacity: 1;
+
+visibility: visible;
+
+clip-path: inset(0 0 0 0);
+
+}
+
+}
+
+
+
+/* =========================================================
+
+12\. CAMPAIGN SCREEN
+
+========================================================= */
+
+
+
+#campaign-screen {
+
+position: absolute;
+
+inset: 0;
+
+z-index: 4;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+overflow: hidden;
+
+background: var(--green);
+
+opacity: 0;
+
+visibility: hidden;
+
+transition:
+
+opacity 800ms ease,
+
+visibility 800ms ease;
+
+}
+
+
+
+#experience.campaign-active #campaign-screen {
+
+opacity: 1;
+
+visibility: visible;
+
+}
+
+
+
+#experience.campaign-active #intro-screen {
+
+opacity: 0;
+
+visibility: hidden;
+
+}
+
+
+
+/* Campaign content */
+
+
+
+.campaign-content {
+
+position: relative;
+
+z-index: 2;
+
+width: 100%;
+
+padding: 30px 20px;
+
+text-align: center;
+
+color: var(--white);
+
+}
+
+
+
+.campaign-years {
+
+font-size: clamp(48px, 12vw, 100px);
+
+font-weight: 800;
+
+line-height: 1.2;
+
+opacity: 0;
+
+}
+
+
+
+.campaign-title {
+
+margin-top: 14px;
+
+font-size: clamp(25px, 6vw, 48px);
+
+font-weight: 600;
+
+line-height: 1.6;
+
+opacity: 0;
+
+}
+
+
+
+#experience.campaign-active .campaign-years {
+
+animation: campaignTextReveal 900ms ease 200ms forwards;
+
+}
+
+
+
+#experience.campaign-active .campaign-title {
+
+animation: campaignTextReveal 900ms ease 600ms forwards;
+
+}
+
+
+
+@keyframes campaignTextReveal {
+
+from {
+
+opacity: 0;
+
+transform: translateY(18px);
+
+}
+
+to {
+
+opacity: 1;
+
+transform: translateY(0);
+
+}
+
+}
+
+
+
+/* Campaign shine */
+
+
+
+.campaign-shine {
+
+position: absolute;
+
+top: -50%;
+
+left: -80%;
+
+width: 45%;
+
+height: 200%;
+
+background: linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(255, 255, 255, .16),
+
+transparent
+
+);
+
+transform: rotate(20deg);
+
+pointer-events: none;
+
+}
+
+
+
+#experience.campaign-active .campaign-shine {
+
+animation: campaignShine 2200ms ease-in-out 300ms forwards;
+
+}
+
+
+
+@keyframes campaignShine {
+
+from {
+
+left: -80%;
+
+}
+
+to {
+
+left: 140%;
+
+}
+
+}
+
+
+
+/* =========================================================
+
+13\. MAIN WEBSITE
+
+========================================================= */
+
+
+
+#main-screen {
+
+position: relative;
+
+z-index: 1;
+
+width: 100%;
+
+min-height: 100vh;
+
+background: var(--white);
+
+opacity: 0;
+
+visibility: hidden;
+
+transform: translateY(40px);
+
+transition:
+
+opacity 900ms ease,
+
+transform 1100ms cubic-bezier(.22, 1, .36, 1),
+
+visibility 900ms ease;
+
+}
+
+
+
+#experience.is-finished + #main-screen {
+
+opacity: 1;
+
+visibility: visible;
+
+transform: translateY(0);
+
+}
+
+
+
+/* =========================================================
+
+14\. COVER
+
+========================================================= */
+
+
+
+.cover {
+
+width: 100%;
+
+overflow: hidden;
+
+background: var(--green);
+
+}
+
+
+
+.cover img {
+
+display: block;
+
+width: 100%;
+
+height: auto;
+
+object-fit: cover;
+
+}
+
+
+
+/* =========================================================
+
+15\. PAGE CONTENT
+
+========================================================= */
+
+
+
+.page-content {
+
+width: min(100% - 32px, var(--page-width));
+
+margin-inline: auto;
+
+padding-block: 34px 60px;
+
+}
+
+
+
+.content-section {
+
+width: 100%;
+
+margin-bottom: 44px;
+
+}
+
+
+
+/* =========================================================
+
+16\. CONTACT GRID
+
+========================================================= */
+
+
+
+.contact-grid {
+
+display: grid;
+
+/* All contact buttons stay vertically stacked */
+
+grid-template-columns: minmax(0, 1fr);
+
+gap: 13px;
+
+}
+
+
+
+.contact-button {
+
+position: relative;
+
+display: flex;
+
+flex-direction: column;
+
+align-items: center;
+
+justify-content: center;
+
+min-height: 112px;
+
+padding: 18px 12px;
+
+gap: 10px;
+
+border: 1px solid rgba(8, 122, 73, .1);
+
+border-radius: var(--radius-md);
+
+background: var(--surface-soft);
+
+color: var(--green-dark);
+
+text-align: center;
+
+transition:
+
+transform 250ms ease,
+
+background 250ms ease,
+
+border-color 250ms ease,
+
+box-shadow 250ms ease;
+
+}
+
+
+
+.contact-button:hover {
+
+transform: translateY(-3px);
+
+background: #edf7f1;
+
+border-color: rgba(8, 122, 73, .3);
+
+box-shadow: var(--shadow-soft);
+
+}
+
+
+
+.contact-button:active {
+
+transform: scale(.97);
+
+}
+
+
+
+.contact-icon {
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+width: 40px;
+
+height: 40px;
+
+border-radius: 50%;
+
+background: rgba(8, 122, 73, .09);
+
+color: var(--green);
+
+font-size: 22px;
+
+line-height: 1;
+
+}
+
+
+
+.contact-label {
+
+font-size: 13px;
+
+font-weight: 600;
+
+line-height: 1.6;
+
+}
+
+
+
+/* =========================================================
+
+17\. WORKING HOURS
+
+========================================================= */
+
+
+
+.working-hours {
+
+scroll-margin-top: 30px;
+
+}
+
+
+
+/* =========================================================
+
+18\. SERVICES
+
+========================================================= */
+
+
+
+.services-subtitle {
+
+margin-bottom: 20px;
+
+color: var(--text-muted);
+
+font-size: 14px;
+
+font-weight: 500;
+
+text-align: center;
+
+}
+
+
+
+.services-grid {
+
+display: grid;
+
+grid-template-columns: 1fr;
+
+gap: 16px;
+
+}
+
+
+
+.service-card {
+
+padding: 22px;
+
+border: 1px solid rgba(8, 122, 73, .12);
+
+border-radius: var(--radius-lg);
+
+background: var(--surface);
+
+box-shadow: var(--shadow-soft);
+
+}
+
+
+
+.service-title {
+
+margin-bottom: 18px;
+
+color: var(--green-dark);
+
+font-size: 19px;
+
+font-weight: 700;
+
+text-align: center;
+
+}
+
+
+
+.service-content {
+
+width: 100%;
+
+}
+
+
+
+/* =========================================================
+
+19\. SOCIAL MEDIA
+
+========================================================= */
+
+
+
+.social-links {
+
+display: flex;
+
+flex-direction: column;
+
+flex-wrap: nowrap;
+
+align-items: stretch;
+
+justify-content: center;
+
+gap: 12px;
+
+}
+
+
+
+.social-link {
+
+display: inline-flex;
+
+align-items: center;
+
+justify-content: center;
+
+width: 100%;
+
+min-height: 46px;
+
+padding: 10px 20px;
+
+border: 1px solid rgba(8, 122, 73, .15);
+
+border-radius: 50px;
+
+color: var(--green-dark);
+
+background: var(--surface-soft);
+
+font-size: 13px;
+
+font-weight: 600;
+
+transition:
+
+background 250ms ease,
+
+color 250ms ease,
+
+transform 250ms ease;
+
+}
+
+
+
+.social-link:hover {
+
+background: var(--green);
+
+color: var(--white);
+
+transform: translateY(-2px);
+
+}
+
+
+
+/* ================================
+
+PROFESSIONAL FOOTER
+
+================================ */
+
+
+
+.site-footer {
+
+width: 100%;
+
+display: flex;
+
+flex-direction: column;
+
+align-items: center;
+
+justify-content: center;
+
+gap: 7px;
+
+padding: 30px 20px 35px;
+
+margin-top: 35px;
+
+background: transparent;
+
+border-top: 1px solid rgba(8, 122, 73, 0.12);
+
+text-align: center;
+
+}
+
+
+
+.footer-powered {
+
+font-family: inherit;
+
+font-size: 9px;
+
+font-weight: 500;
+
+letter-spacing: 3px;
+
+color: #888888;
+
+text-transform: uppercase;
+
+}
+
+
+
+.mooteva-link {
+
+display: inline-flex;
+
+align-items: baseline;
+
+gap: 5px;
+
+direction: ltr;
+
+color: hsl(0, 0%, 0%);
+
+font-family: Arial, sans-serif;
+
+font-size: 17px;
+
+font-weight: 800;
+
+letter-spacing: 0.5px;
+
+text-decoration: none;
+
+transition: opacity 0.3s ease;
+
+}
+
+
+
+.mooteva-link span {
+
+font-size: 14px;
+
+font-weight: 600;
+
+letter-spacing: 2.5px;
+
+color: hsl(0, 0%, 0%);
+
+}
+
+
+
+.mooteva-link:hover {
+
+opacity: 0.7;
+
+}
+
+
+
+/* =========================================================
+
+21\. TABLET
+
+========================================================= */
+
+
+
+@media (min-width: 600px) {
+
+.logo-stage {
+
+width: min(55vw, 430px);
+
+}
+
+
+
+.page-content {
+
+padding-top: 50px;
+
+}
+
+
+
+.contact-grid {
+
+grid-template-columns: minmax(0, 1fr);
+
+gap: 16px;
+
+}
+
+
+
+.contact-button {
+
+min-height: 130px;
+
+}
+
+
+
+.contact-label {
+
+font-size: 14px;
+
+}
+
+
+
+.services-grid {
+
+grid-template-columns: repeat(2, minmax(0, 1fr));
+
+}
+
+}
+
+
+
+/* =========================================================
+
+22\. DESKTOP
+
+========================================================= */
+
+
+
+@media (min-width: 900px) {
+
+.logo-stage {
+
+width: min(38vw, 450px);
+
+}
+
+
+
+.page-content {
+
+padding-block: 55px 80px;
+
+}
+
+
+
+.contact-grid {
+
+grid-template-columns: minmax(0, 1fr);
+
+gap: 18px;
+
+}
+
+
+
+.contact-button {
+
+min-height: 145px;
+
+}
+
+
+
+.site-footer {
+
+padding-block: 34px;
+
+}
+
+}
+
+
+
+/* =========================================================
+
+23\. SMALL MOBILE
+
+========================================================= */
+
+
+
+@media (max-width: 380px) {
+
+#intro-screen {
+
+padding: 16px;
+
+}
+
+
+
+.logo-stage {
+
+width: min(86vw, 340px);
+
+}
+
+
+
+.contact-grid {
+
+gap: 9px;
+
+}
+
+
+
+.contact-button {
+
+min-height: 102px;
+
+padding: 14px 8px;
+
+}
+
+
+
+.contact-label {
+
+font-size: 12px;
+
+}
+
+}
+
+
+
+/* =========================================================
+
+24\. ACCESSIBILITY
+
+========================================================= */
+
+
+
+@media (prefers-reduced-motion: reduce) {
+
+*,
+
+*::before,
+
+*::after {
+
+scroll-behavior: auto !important;
+
+animation-duration: .01ms !important;
+
+animation-iteration-count: 1 !important;
+
+transition-duration: .01ms !important;
+
+}
+
+}
+
+
+
+/* =========================================================
+
+APPROVED ADDITIONS — SERVICES, SOCIAL ICONS & CONTACT ICONS
+
+Original intro, logo dimensions, animation sequence and footer remain unchanged.
+
+========================================================= */
+
+
+
+/* Three disabled service buttons, retaining the original card appearance */
+
+
+
+.services-grid {
+
+display: flex;
+
+flex-direction: column;
+
+grid-template-columns: 1fr;
+
+gap: 12px;
+
+}
+
+
+
+.service-card {
+
+width: 100%;
+
+min-height: 64px;
+
+padding: 16px 22px;
+
+display: flex;
+
+align-items: center;
+
+justify-content: space-between;
+
+gap: 12px;
+
+font: inherit;
+
+text-align: right;
+
+cursor: default;
+
+}
+
+
+
+.service-card-disabled,
+
+.service-card:disabled {
+
+opacity: 1;
+
+cursor: not-allowed;
+
+}
+
+
+
+.service-title {
+
+margin: 0;
+
+color: var(--green-dark);
+
+font-size: 16px;
+
+font-weight: 700;
+
+text-align: right;
+
+}
+
+
+
+.service-coming-soon {
+
+flex: 0 0 auto;
+
+color: rgba(197, 106, 155, 0.45);
+
+font-size: 11px;
+
+font-weight: 500;
+
+white-space: nowrap;
+
+}
+
+
+
+/* Social media: icon-only horizontal row */
+
+
+
+.social-links {
+
+display: flex;
+
+flex-direction: row;
+
+flex-wrap: wrap;
+
+align-items: center;
+
+justify-content: center;
+
+gap: 16px;
+
+}
+
+
+
+.social-link {
+
+width: 48px;
+
+height: 48px;
+
+min-height: 48px;
+
+padding: 11px;
+
+display: inline-flex;
+
+align-items: center;
+
+justify-content: center;
+
+border: 1px solid rgba(8, 122, 73, .15);
+
+border-radius: 50%;
+
+color: var(--green-dark);
+
+background: var(--surface-soft);
+
+font-size: 0;
+
+cursor: pointer;
+
+transition: background 250ms ease, color 250ms ease, transform 250ms ease;
+
+}
+
+
+
+.social-link img,
+
+.social-link svg {
+
+display: block;
+
+width: 100%;
+
+height: 100%;
+
+object-fit: contain;
+
+}
+
+
+
+.social-link:hover {
+
+background: var(--green);
+
+color: var(--white);
+
+transform: translateY(-2px);
+
+}
+
+
+
+.social-link.is-disabled {
+
+opacity: .35;
+
+cursor: not-allowed;
+
+pointer-events: none;
+
+}
+
+
+
+.social-link.is-disabled:hover {
+
+background: var(--surface-soft);
+
+color: var(--green-dark);
+
+transform: none;
+
+}
+
+
+
+.social-link.share {
+
+font: inherit;
+
+}
+
+
+
+/* SVG/PNG contact icons fit the existing icon circle */
+
+
+
+.contact-icon img,
+
+.contact-icon svg {
+
+display: block;
+
+width: 24px;
+
+height: 24px;
+
+object-fit: contain;
+
+}
+
+
+
+.contact-icon {
+
+flex-shrink: 0;
+
+}
+
+
+
+@media (min-width: 600px) {
+
+.services-grid {
+
+grid-template-columns: 1fr;
+
+}
+
+}
+
+/* =========================================================
+   24. WORKING HOURS & DOCTOR SCHEDULES
+========================================================= */
+
+.hours-heading {
+    margin-bottom: 22px;
+    text-align: center;
+}
+
+.hours-eyebrow {
+    display: inline-block;
+    margin-bottom: 7px;
+    color: var(--green);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.hours-title {
+    color: var(--green-dark);
+    font-size: clamp(20px, 4vw, 27px);
+    font-weight: 800;
+}
+
+.hours-subtitle {
+    margin-top: 7px;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.hours-general-card,
+.doctor-hours-card {
+    padding: 21px;
+    border: 1px solid rgba(8, 122, 73, .12);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    box-shadow: var(--shadow-soft);
+}
+
+.hours-general-card {
+    margin-bottom: 16px;
+}
+
+.hours-card-heading,
+.doctor-card-top {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 16px;
+}
+
+.hours-icon {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    place-items: center;
+    border-radius: 14px;
+    background: rgba(8, 122, 73, .09);
+    color: var(--green);
+}
+
+.hours-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.hours-card-heading h3,
+.doctor-hours-card h3 {
+    color: var(--green-dark);
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.hours-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+    border-top: 1px solid rgba(8, 122, 73, .09);
+    font-size: 13px;
+}
+
+.hours-row span,
+.doctor-time span {
+    color: var(--text-muted);
+}
+
+.hours-row strong,
+.doctor-time strong {
+    color: var(--text);
+    font-weight: 700;
+    text-align: left;
+}
+
+.hours-closed {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    padding: 11px 13px;
+    border-radius: 12px;
+    background: #fff3f1;
+    color: #a33b32;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.closed-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #c94c40;
+}
+
+.doctors-hours-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+}
+
+.doctor-card-top {
+    justify-content: space-between;
+    margin-bottom: 13px;
+}
+
+.doctor-label {
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.doctor-avatar {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--green);
+    color: var(--white);
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.doctor-hours-card h3 {
+    font-size: 18px;
+}
+
+.doctor-specialty {
+    min-height: 25px;
+    margin-top: 4px;
+    color: var(--text-muted);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.doctor-days {
+    margin: 16px 0 12px;
+    padding: 11px 12px;
+    border-radius: 12px;
+    background: var(--surface-soft);
+    color: var(--green-dark);
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.doctor-time {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(8, 122, 73, .09);
+    font-size: 12px;
+}
+
+@media (min-width: 700px) {
+    .doctors-hours-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 380px) {
+    .hours-general-card,
+    .doctor-hours-card {
+        padding: 17px 14px;
+    }
+
+    .hours-row {
+        font-size: 11px;
+    }
+}
+
+
+/* =========================================================
+   25. REFINED CINEMATIC LOGO / HORIZONTAL CONTACT BUTTONS
+   ========================================================= */
+
+/* Smooth, layered logo assembly. The original logo artwork and
+   its exact canvas alignment remain unchanged. */
+#experience.logo-building .logo-part.apple {
+    animation: cinematicApple 1550ms cubic-bezier(.16, 1, .3, 1) both;
+}
+#experience.logo-building .logo-part.knee {
+    animation: cinematicKnee 1550ms cubic-bezier(.16, 1, .3, 1) 420ms both;
+}
+#experience.logo-building .logo-part.leaf {
+    animation: cinematicLeaf 1700ms cubic-bezier(.16, 1, .3, 1) 900ms both;
+}
+#experience.logo-building .logo-part.dots {
+    animation: cinematicDots 1500ms cubic-bezier(.16, 1, .3, 1) 1450ms both;
+}
+#experience.logo-building .logo-part.logo-name {
+    animation: cinematicName 1600ms cubic-bezier(.16, 1, .3, 1) 2050ms both;
+}
+#experience.logo-building .logo-part.human {
+    animation: cinematicHuman 1700ms cubic-bezier(.16, 1, .3, 1) 2500ms both;
+}
+#experience.logo-building .logo-part.logo-description {
+    animation: cinematicDescription 1600ms cubic-bezier(.16, 1, .3, 1) 3100ms both;
+}
+
+@keyframes cinematicApple {
+    0% { opacity: 0; visibility: visible; transform: translate(-34px, 22px) scale(.88) rotate(-5deg); filter: blur(13px); clip-path: inset(38% 38% 38% 38%); }
+    58% { opacity: 1; filter: blur(1px); clip-path: inset(0); }
+    100% { opacity: 1; visibility: visible; transform: translate(0) scale(1) rotate(0); filter: blur(0); clip-path: inset(0); }
+}
+@keyframes cinematicKnee {
+    0% { opacity: 0; visibility: visible; transform: translate(34px, 18px) scale(.9) rotate(5deg); filter: blur(14px); clip-path: inset(38% 38% 38% 38%); }
+    58% { opacity: 1; filter: blur(1px); clip-path: inset(0); }
+    100% { opacity: 1; visibility: visible; transform: translate(0) scale(1) rotate(0); filter: blur(0); clip-path: inset(0); }
+}
+@keyframes cinematicLeaf {
+    0% { opacity: 0; visibility: visible; transform: translateY(28px) scale(.82) rotate(-4deg); filter: blur(12px); }
+    65% { opacity: 1; filter: blur(1px); }
+    100% { opacity: 1; visibility: visible; transform: translateY(0) scale(1) rotate(0); filter: blur(0); }
+}
+@keyframes cinematicDots {
+    0% { opacity: 0; visibility: visible; transform: translateY(22px) scale(.92); filter: blur(10px); clip-path: inset(100% 0 0); }
+    70% { opacity: 1; filter: blur(1px); clip-path: inset(0); }
+    100% { opacity: 1; visibility: visible; transform: translateY(0) scale(1); filter: blur(0); clip-path: inset(0); }
+}
+@keyframes cinematicName {
+    0% { opacity: 0; visibility: visible; transform: translateY(24px) scale(.97); filter: blur(14px); }
+    65% { opacity: 1; filter: blur(1px); }
+    100% { opacity: 1; visibility: visible; transform: translateY(0) scale(1); filter: blur(0); }
+}
+@keyframes cinematicHuman {
+    0% { opacity: 0; visibility: visible; transform: scale(1.24) translateY(8px); filter: blur(16px); }
+    62% { opacity: 1; filter: blur(1px); }
+    100% { opacity: 1; visibility: visible; transform: scale(1) translateY(0); filter: blur(0); }
+}
+@keyframes cinematicDescription {
+    0% { opacity: 0; visibility: visible; transform: translateY(14px); filter: blur(12px); clip-path: inset(0 100% 0 0); }
+    70% { opacity: 1; filter: blur(1px); clip-path: inset(0); }
+    100% { opacity: 1; visibility: visible; transform: translateY(0); filter: blur(0); clip-path: inset(0); }
+}
+
+/* Contact actions now use icon + label on one horizontal line. */
+.contact-button {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 72px;
+    padding: 13px 18px;
+    gap: 14px;
+    text-align: right;
+    cursor: pointer;
+}
+.contact-icon {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+}
+.contact-label {
+    flex: 1 1 auto;
+    text-align: right;
+}
+.contact-chevron {
+    flex: 0 0 auto;
+    margin-inline-start: auto;
+    color: var(--green);
+    font-size: 23px;
+    line-height: 1;
+    transition: transform 350ms cubic-bezier(.22, 1, .36, 1);
+}
+#working-hours-toggle[aria-expanded="true"] .contact-chevron {
+    transform: rotate(180deg);
+}
+
+/* Working hours are a collapsible panel opened from its button. */
+#working-hours[hidden] {
+    display: none !important;
+}
+#working-hours {
+    margin-top: 18px;
+    padding: 22px;
+    border: 1px solid rgba(8, 122, 73, .12);
+    border-radius: var(--radius-lg);
+    background: #fbfdfb;
+    box-shadow: var(--shadow-soft);
+    transform-origin: top center;
+}
+#working-hours.hours-expanded {
+    animation: hoursDropIn 520ms cubic-bezier(.16, 1, .3, 1) both;
+}
+@keyframes hoursDropIn {
+    from { opacity: 0; transform: translateY(-14px) scaleY(.96); filter: blur(5px); }
+    to { opacity: 1; transform: translateY(0) scaleY(1); filter: blur(0); }
+}
+@media (max-width: 380px) {
+    .contact-button { min-height: 66px; padding: 11px 13px; }
+    #working-hours { padding: 16px 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    #experience.logo-building .logo-part,
+    #working-hours.hours-expanded { animation-duration: .01ms !important; animation-delay: 0ms !important; }
+}
+
+
+/* =========================================================
+   FINAL INTRO UPDATE — EXPANDING GATE / AUDIO SYNC
+   ========================================================= */
+
+#gate-screen {
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.gate-transition-circle {
+    position: absolute;
+    z-index: 0;
+    top: 50%;
+    left: 50%;
+    width: 100vmax;
+    height: 100vmax;
+    border-radius: 50%;
+    background: var(--white);
+    box-shadow: 0 0 34px rgba(25, 168, 120, .55);
+    transform: translate(-50%, -50%) scale(.001);
+    transform-origin: center;
+    pointer-events: none;
+    will-change: transform;
+}
+
+#experience.gate-expanding .gate-transition-circle {
+    animation: gateCircleExpand 1300ms cubic-bezier(.76, 0, .18, 1) forwards;
+}
+
+#experience.gate-expanding .start-button {
+    animation: gateButtonFade 420ms ease forwards;
+    pointer-events: none;
+}
+
+#experience.gate-expanding #gate-screen {
+    opacity: 1;
+    visibility: visible;
+}
+
+@keyframes gateCircleExpand {
+    0% { transform: translate(-50%, -50%) scale(.001); }
+    18% { transform: translate(-50%, -50%) scale(.045); }
+    100% { transform: translate(-50%, -50%) scale(1.6); }
+}
+
+@keyframes gateButtonFade {
+    to { opacity: 0; transform: scale(.82); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #experience.gate-expanding .gate-transition-circle {
+        animation-duration: .01ms !important;
+    }
+    #experience.gate-expanding .start-button {
+        animation-duration: .01ms !important;
+    }
+}
+
+
+/* =========================================================
+   FINAL POLISH — GATE MOTION / CONTINUOUS LOGO / INLINE HOURS
+   ========================================================= */
+
+/* Gate switch: the muted knob travels across the track and lights up. */
+.toggle-knob {
+    background: #65716b;
+    box-shadow: 0 0 0 rgba(25, 168, 120, 0);
+    will-change: transform, background-color, box-shadow;
+}
+
+#experience.gate-expanding .toggle-knob {
+    animation: gateKnobTravel 560ms cubic-bezier(.45, 0, .18, 1) forwards;
+}
+
+@keyframes gateKnobTravel {
+    0% {
+        transform: translateX(0) scale(1);
+        background: #65716b;
+        box-shadow: 0 0 0 rgba(25, 168, 120, 0);
+    }
+    68% {
+        transform: translateX(34px) scale(1.06);
+        background: #19a878;
+        box-shadow: 0 0 24px rgba(25, 168, 120, .75);
+    }
+    100% {
+        transform: translateX(34px) scale(1);
+        background: #19a878;
+        box-shadow: 0 0 18px rgba(25, 168, 120, .65);
+    }
+}
+
+/* The illuminated green circle launches only after the switch reaches its end. */
+.gate-transition-circle {
+    top: 50%;
+    left: 50%;
+    width: 100vmax;
+    height: 100vmax;
+    background: #19a878;
+    box-shadow: 0 0 42px rgba(25, 168, 120, .42);
+    transform: translate(-50%, -50%) scale(.001);
+}
+
+#experience.gate-expanding .gate-transition-circle {
+    animation: gateCircleLaunch 1120ms cubic-bezier(.72, 0, .18, 1) 540ms forwards;
+}
+
+#experience.gate-expanding .start-button {
+    animation: gateButtonFade 360ms ease 520ms forwards;
+}
+
+@keyframes gateCircleLaunch {
+    0% { transform: translate(-50%, -50%) scale(.001); }
+    12% { transform: translate(-50%, -50%) scale(.045); }
+    100% { transform: translate(-50%, -50%) scale(1.65); }
+}
+
+@keyframes gateButtonFade {
+    to { opacity: 0; transform: scale(.82); }
+}
+
+/* Logo assembly: clean, deliberate reveals with no blur and no dead gaps. */
+#experience.logo-building .logo-part.apple,
+#experience.logo-building .logo-part.knee,
+#experience.logo-building .logo-part.leaf,
+#experience.logo-building .logo-part.dots,
+#experience.logo-building .logo-part.logo-name,
+#experience.logo-building .logo-part.human,
+#experience.logo-building .logo-part.logo-description {
+    animation-name: logoLayerReveal;
+    animation-duration: 1320ms;
+    animation-timing-function: cubic-bezier(.2, .72, .22, 1);
+    animation-fill-mode: both;
+    filter: none !important;
+    will-change: opacity, transform, clip-path;
+}
+
+#experience.logo-building .logo-part.apple { animation-delay: 0ms; }
+#experience.logo-building .logo-part.knee { animation-delay: 330ms; }
+#experience.logo-building .logo-part.leaf { animation-delay: 660ms; }
+#experience.logo-building .logo-part.dots { animation-delay: 990ms; }
+#experience.logo-building .logo-part.logo-name { animation-delay: 1320ms; }
+#experience.logo-building .logo-part.human { animation-delay: 1650ms; }
+#experience.logo-building .logo-part.logo-description { animation-delay: 1980ms; }
+
+@keyframes logoLayerReveal {
+    0% {
+        opacity: 0;
+        visibility: visible;
+        transform: translate3d(0, 7px, 0) scale(.985);
+        clip-path: inset(0 0 12% 0);
+        filter: none;
+    }
+    72% {
+        opacity: 1;
+        transform: translate3d(0, -1px, 0) scale(1.002);
+        clip-path: inset(0);
+        filter: none;
+    }
+    100% {
+        opacity: 1;
+        visibility: visible;
+        transform: translate3d(0, 0, 0) scale(1);
+        clip-path: inset(0);
+        filter: none;
+    }
+}
+
+/* Keep each contact icon + label as one centered horizontal group. */
+.contact-button {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+}
+
+.contact-label {
+    flex: 0 1 auto;
+    text-align: center;
+}
+
+#working-hours-toggle .contact-label {
+    flex: 0 1 auto;
+    text-align: center;
+}
+
+.contact-chevron {
+    position: absolute;
+    inset-inline-start: 18px;
+    top: 50%;
+    margin: 0;
+    transform: translateY(-50%);
+}
+
+#working-hours-toggle[aria-expanded="true"] .contact-chevron {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+/* The panel is a grid item immediately after its trigger, so it pushes
+   every following item down instead of scrolling to a distant section. */
+#working-hours {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin: 0;
+    padding: 22px;
+    transform-origin: top center;
+}
+
+#working-hours[hidden] {
+    display: none !important;
+}
+
+#working-hours.hours-expanded {
+    animation: hoursInlineExpand 460ms cubic-bezier(.18, .72, .22, 1) both;
+}
+
+@keyframes hoursInlineExpand {
+    from { opacity: 0; transform: translateY(-8px) scaleY(.985); }
+    to { opacity: 1; transform: translateY(0) scaleY(1); }
+}
+
+/* A recognizable classic landline telephone glyph. */
+.contact-icon svg {
+    width: 25px;
+    height: 25px;
+    display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #experience.gate-expanding .toggle-knob,
+    #experience.gate-expanding .gate-transition-circle,
+    #experience.logo-building .logo-part,
+    #working-hours.hours-expanded {
+        animation-duration: .01ms !important;
+        animation-delay: 0ms !important;
+    }
+}
+
+
+/* =========================================================
+   FINAL APPROVED UPDATE — SVG ORGANIC LOGO REVEAL + ICON STACK
+   ========================================================= */
+
+/* Exact shared SVG canvas; no per-element scaling or repositioning. */
+.logo-stage { width: min(78vw, 430px); }
+.logo-symbol, .logo-words { isolation: isolate; }
+.logo-part {
+    object-fit: contain;
+    filter: none !important;
+    backface-visibility: hidden;
+}
+.logo-part.apple { z-index: 1; }
+.logo-part.knee { z-index: 2; }
+.logo-part.human { z-index: 4; }
+.logo-part.dots { z-index: 5; }
+.logo-part.leaf { z-index: 6; }
+.logo-part.logo-name { z-index: 8; }
+.logo-part.logo-description { z-index: 9; }
+
+/* Smooth, connected reveal. The five vector shapes keep their original geometry. */
+#experience.logo-building .logo-part.apple,
+#experience.logo-building .logo-part.knee,
+#experience.logo-building .logo-part.human,
+#experience.logo-building .logo-part.dots,
+#experience.logo-building .logo-part.leaf,
+#experience.logo-building .logo-part.logo-name,
+#experience.logo-building .logo-part.logo-description {
+    visibility: visible;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(.22,.72,.18,1);
+    filter: none !important;
+    will-change: opacity, clip-path, transform;
+}
+
+#experience.logo-building .logo-part.apple {
+    animation: alAppleGrow 1250ms cubic-bezier(.22,.72,.18,1) 0ms both;
+}
+#experience.logo-building .logo-part.knee {
+    animation: alKneeGrow 1140ms cubic-bezier(.22,.72,.18,1) 430ms both;
+}
+#experience.logo-building .logo-part.human {
+    animation: alHumanGrow 1060ms cubic-bezier(.2,.76,.2,1) 860ms both;
+}
+#experience.logo-building .logo-part.dots {
+    animation: alDotsGrow 840ms cubic-bezier(.2,.76,.2,1) 1340ms both;
+}
+#experience.logo-building .logo-part.leaf {
+    animation: alLeafGrow 950ms cubic-bezier(.2,.76,.2,1) 1720ms both;
+}
+#experience.logo-building .logo-part.logo-name {
+    animation: alNameReveal 830ms cubic-bezier(.2,.78,.2,1) 2220ms both;
+}
+#experience.logo-building .logo-part.logo-description {
+    animation: alDescriptionRTL 870ms cubic-bezier(.2,.78,.2,1) 2780ms both;
+}
+
+@keyframes alAppleGrow {
+    0% { opacity:0; clip-path:ellipse(0% 0% at 49% 53%); transform:scale(.93); }
+    62% { opacity:1; clip-path:ellipse(48% 53% at 49% 53%); transform:scale(1.012); }
+    100% { opacity:1; clip-path:ellipse(76% 76% at 49% 53%); transform:scale(1); }
+}
+@keyframes alKneeGrow {
+    0% { opacity:0; clip-path:ellipse(0% 0% at 69% 60%); transform:scale(.94); }
+    68% { opacity:1; clip-path:ellipse(48% 54% at 69% 60%); transform:scale(1.008); }
+    100% { opacity:1; clip-path:ellipse(78% 78% at 69% 60%); transform:scale(1); }
+}
+@keyframes alHumanGrow {
+    0% { opacity:0; clip-path:inset(100% 0 0 0); transform:translateY(1.8%) scale(.99); }
+    100% { opacity:1; clip-path:inset(0); transform:translateY(0) scale(1); }
+}
+@keyframes alDotsGrow {
+    0% { opacity:0; clip-path:ellipse(0% 0% at 48% 55%); transform:scale(.94); }
+    100% { opacity:1; clip-path:ellipse(82% 82% at 48% 55%); transform:scale(1); }
+}
+@keyframes alLeafGrow {
+    0% { opacity:0; clip-path:ellipse(0% 0% at 51% 23%); transform:scale(.92); }
+    100% { opacity:1; clip-path:ellipse(82% 82% at 51% 23%); transform:scale(1); }
+}
+@keyframes alNameReveal {
+    0% { opacity:0; clip-path:inset(100% 0 0 0); transform:translateY(1.2%); }
+    100% { opacity:1; clip-path:inset(0); transform:translateY(0); }
+}
+/* Arabic description specifically reveals from right to left. */
+@keyframes alDescriptionRTL {
+    0% { opacity:0; clip-path:inset(0 0 0 100%); transform:translateX(-.6%); }
+    100% { opacity:1; clip-path:inset(0); transform:translateX(0); }
+}
+
+/* Contact buttons: label first, icon below it; all icons share the same centered axis. */
+.contact-button {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    min-height:100px;
+    padding:14px 16px;
+    text-align:center;
+}
+.contact-label {
+    order:1;
+    flex:0 1 auto;
+    width:100%;
+    text-align:center;
+}
+.contact-icon {
+    order:2;
+    width:38px;
+    height:38px;
+    flex:0 0 38px;
+    margin-inline:auto;
+}
+.contact-icon img, .contact-icon svg { display:block; width:24px; height:24px; object-fit:contain; }
+#working-hours-toggle .contact-label { order:1; }
+#working-hours-toggle .contact-icon { order:2; }
+#working-hours-toggle .contact-chevron {
+    position:absolute;
+    inset-inline-start:16px;
+    top:50%;
+    margin:0;
+    transform:translateY(-50%);
+}
+#working-hours-toggle[aria-expanded="true"] .contact-chevron {
+    transform:translateY(-50%) rotate(180deg);
+}
+@media (max-width:380px) {
+    .contact-button { min-height:92px; padding:12px 10px; }
+    .contact-icon { width:36px; height:36px; flex-basis:36px; }
+}
+@media (prefers-reduced-motion:reduce) {
+    #experience.logo-building .logo-part { animation-duration:.01ms !important; animation-delay:0ms !important; }
+}
+
+
+/* =========================================================
+   FINAL APPROVED UPDATE — SVG ORGANIC LOGO REVEAL + ICON STACK
+   ========================================================= */
+
+/* Exact shared SVG canvas; no per-element scaling or repositioning. */
+.logo-stage { width: min(78vw, 430px); }
+.logo-symbol, .logo-words { isolation: isolate; }
+.logo-part {
+    object-fit: contain;
+    filter: none !important;
+    backface-visibility: hidden;
+}
+.logo-part.apple { z-index: 1; }
+.logo-part.knee { z-index: 2; }
+.logo-part.human { z-index: 4; }
+.logo-part.dots { z-index: 5; }
+.logo-part.leaf { z-index: 6; }
+.logo-part.logo-name { z-index: 8; }
+.logo-part.logo-description { z-index: 9; }
+
+/* Smooth, connected reveal. The five vector shapes keep their original geometry. */
+#experience.logo-building .logo-part.apple,
+#experience.logo-building .logo-part.knee,
+#experience.logo-building .logo-part.human,
+#experience.logo-building .logo-part.dots,
+#experience.logo-building .logo-part.leaf,
+#experience.logo-building .logo-part.logo-name,
+#experience.logo-building .logo-part.logo-description {
+    visibility: visible;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(.22,.72,.18,1);
+    filter: none !important;
+    will-change: opacity, clip-path, transform;
+}
+
+#experience.logo-building .logo-part.apple {
+    animation: alAppleGrow 1250ms cubic-bezier(.22,.72,.18,1) 0ms both;
+}
+#experience.logo-building .logo-part.knee {
+    animation: alKneeGrow 1140ms cubic-bezier(.22,.72,.18,1) 430ms both;
+}
+#experience.logo-building .logo-part.human {
+    animation: alHumanGrow 1060ms cubic-bezier(.2,.76,.2,1) 860ms both;
+}
+#experience.logo-building .logo-part.dots {
+    animation: alDotsGrow 840ms cubic-bezier(.2,.76,.2,1) 1340ms both;
+}
+#experience.logo-building .logo-part.leaf {
+    animation: alLeafGrow 950ms cubic-bezier(.2,.76,.2,1) 1720ms both;
+}
+#experience.logo-building .logo-part.logo-name {
+    animation: alNameReveal 830ms cubic-bezier(.2,.78,.2,1) 2220ms both;
+}
+#experience.logo-building .logo-part.logo-description {
+    animation: alDescriptionRTL 870ms cubic-bezier(.2,.78,.2,1) 2780ms both;
+}
+
+@keyframes alAppleGrow {
+    0% { opacity:0; clip-path:ellipse(0% 0% at 49% 53%); transform:scale(.93); }
+    62% { opacity:1; clip-path:ellipse(48% 53% at 49% 53%); transform:scale(1.012); }
+    100% { opacity:1; clip-path:ellipse(76% 76% at 49% 53%); transform:scale(1); }
+}
+@keyframes alKneeGrow {
+    0% { opacity:0; clip-path:ellipse(0% 0% at 69% 60%); transform:scale(.94); }
+    68% { opacity:1; clip-path:ellipse(48% 54% at 69% 60%); transform:scale(1.008); }
+    100% { opacity:1; clip-path:ellipse(78% 78% at 69% 60%); transform:scale(1); }
+}
+@keyframes alHumanGrow {
+    0% { opacity:0; clip-path:inset(100% 0 0 0); transform:translateY(1.8%) scale(.99); }
+    100% { opacity:1; clip-path:inset(0); transform:translateY(0) scale(1); }
+}
+@keyframes alDotsGrow {
+    0% { opacity:0; clip-path:ellipse(0% 0% at 48% 55%); transform:scale(.94); }
+    100% { opacity:1; clip-path:ellipse(82% 82% at 48% 55%); transform:scale(1); }
+}
+@keyframes alLeafGrow {
+    0% { opacity:0; clip-path:ellipse(0% 0% at 51% 23%); transform:scale(.92); }
+    100% { opacity:1; clip-path:ellipse(82% 82% at 51% 23%); transform:scale(1); }
+}
+@keyframes alNameReveal {
+    0% { opacity:0; clip-path:inset(100% 0 0 0); transform:translateY(1.2%); }
+    100% { opacity:1; clip-path:inset(0); transform:translateY(0); }
+}
+/* Arabic description specifically reveals from right to left. */
+@keyframes alDescriptionRTL {
+    0% { opacity:0; clip-path:inset(0 0 0 100%); transform:translateX(-.6%); }
+    100% { opacity:1; clip-path:inset(0); transform:translateX(0); }
+}
+
+/* Contact buttons: label first, icon below it; all icons share the same centered axis. */
+.contact-button {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    min-height:100px;
+    padding:14px 16px;
+    text-align:center;
+}
+.contact-label {
+    order:1;
+    flex:0 1 auto;
+    width:100%;
+    text-align:center;
+}
+.contact-icon {
+    order:2;
+    width:38px;
+    height:38px;
+    flex:0 0 38px;
+    margin-inline:auto;
+}
+.contact-icon img, .contact-icon svg { display:block; width:24px; height:24px; object-fit:contain; }
+#working-hours-toggle .contact-label { order:1; }
+#working-hours-toggle .contact-icon { order:2; }
+#working-hours-toggle .contact-chevron {
+    position:absolute;
+    inset-inline-start:16px;
+    top:50%;
+    margin:0;
+    transform:translateY(-50%);
+}
+#working-hours-toggle[aria-expanded="true"] .contact-chevron {
+    transform:translateY(-50%) rotate(180deg);
+}
+@media (max-width:380px) {
+    .contact-button { min-height:92px; padding:12px 10px; }
+    .contact-icon { width:36px; height:36px; flex-basis:36px; }
+}
+@media (prefers-reduced-motion:reduce) {
+    #experience.logo-building .logo-part { animation-duration:.01ms !important; animation-delay:0ms !important; }
+}
+
+
+/* =========================================================
+   UPDATE 07 — MUSIC-SYNCED LOGO REVEAL + CLEAN GATE CUT
+   ========================================================= */
+
+/* The gate circle reaches full-screen at 540ms + 1120ms.
+   Switch to the logo scene on that exact frame: no secondary fade/lag. */
+#experience.intro-started #gate-screen {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: none !important;
+}
+#experience.intro-started #intro-screen {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: none !important;
+}
+
+/* Music has ~160ms of encoded lead-in. The first visible logo movement
+   starts with the first audible beat; the description finishes at ~7.29s,
+   matching the last audible note (~7.285s) of the supplied track. */
+#experience.logo-building .logo-part.apple {
+    animation: alAppleGrow 2440ms cubic-bezier(.22,.72,.18,1) 160ms both !important;
+}
+#experience.logo-building .logo-part.knee {
+    animation: alKneeGrow 2225ms cubic-bezier(.22,.72,.18,1) 1000ms both !important;
+}
+#experience.logo-building .logo-part.human {
+    animation: alHumanGrow 2070ms cubic-bezier(.2,.76,.2,1) 1840ms both !important;
+}
+#experience.logo-building .logo-part.dots {
+    animation: alDotsGrow 1640ms cubic-bezier(.2,.76,.2,1) 2780ms both !important;
+}
+#experience.logo-building .logo-part.leaf {
+    animation: alLeafGrow 1855ms cubic-bezier(.2,.76,.2,1) 3520ms both !important;
+}
+#experience.logo-building .logo-part.logo-name {
+    animation: alNameReveal 1620ms cubic-bezier(.2,.78,.2,1) 4490ms both !important;
+}
+#experience.logo-building .logo-part.logo-description {
+    animation: alDescriptionRTL 1700ms cubic-bezier(.2,.78,.2,1) 5590ms both !important;
+}
+
+/* Contact controls: icon at the same RTL-side edge in every row,
+   title beside it, and labels align to the opposite edge. */
+.contact-button {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 12px !important;
+    min-height: 76px !important;
+    padding: 12px 16px !important;
+    text-align: start !important;
+}
+.contact-icon {
+    order: 0 !important;
+    flex: 0 0 38px !important;
+    width: 38px !important;
+    height: 38px !important;
+    margin: 0 !important;
+}
+.contact-label {
+    order: 1 !important;
+    flex: 1 1 auto !important;
+    width: auto !important;
+    text-align: start !important;
+}
+#working-hours-toggle .contact-icon { order: 0 !important; }
+#working-hours-toggle .contact-label {
+    order: 1 !important;
+    text-align: start !important;
+}
+#working-hours-toggle .contact-chevron {
+    inset-inline-start: 16px !important;
+    top: 50% !important;
+}
+@media (max-width: 380px) {
+    .contact-button { min-height: 70px !important; padding: 10px 12px !important; }
+    .contact-icon { flex-basis: 34px !important; width: 34px !important; height: 34px !important; }
+}
+
+
+/* =========================================================
+   UPDATE 07 — MUSIC-SYNCED LOGO REVEAL + CLEAN GATE CUT
+   ========================================================= */
+
+/* The gate circle reaches full-screen at 540ms + 1120ms.
+   Switch to the logo scene on that exact frame: no secondary fade/lag. */
+#experience.intro-started #gate-screen {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: none !important;
+}
+#experience.intro-started #intro-screen {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: none !important;
+}
+
+/* Music has ~160ms of encoded lead-in. The first visible logo movement
+   starts with the first audible beat; the description finishes at ~7.29s,
+   matching the last audible note (~7.285s) of the supplied track. */
+#experience.logo-building .logo-part.apple {
+    animation: alAppleGrow 2440ms cubic-bezier(.22,.72,.18,1) 160ms both !important;
+}
+#experience.logo-building .logo-part.knee {
+    animation: alKneeGrow 2225ms cubic-bezier(.22,.72,.18,1) 1000ms both !important;
+}
+#experience.logo-building .logo-part.human {
+    animation: alHumanGrow 2070ms cubic-bezier(.2,.76,.2,1) 1840ms both !important;
+}
+#experience.logo-building .logo-part.dots {
+    animation: alDotsGrow 1640ms cubic-bezier(.2,.76,.2,1) 2780ms both !important;
+}
+#experience.logo-building .logo-part.leaf {
+    animation: alLeafGrow 1855ms cubic-bezier(.2,.76,.2,1) 3520ms both !important;
+}
+#experience.logo-building .logo-part.logo-name {
+    animation: alNameReveal 1620ms cubic-bezier(.2,.78,.2,1) 4490ms both !important;
+}
+#experience.logo-building .logo-part.logo-description {
+    animation: alDescriptionRTL 1700ms cubic-bezier(.2,.78,.2,1) 5590ms both !important;
+}
+
+/* Contact controls: icon at the same RTL-side edge in every row,
+   title beside it, and labels align to the opposite edge. */
+.contact-button {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 12px !important;
+    min-height: 76px !important;
+    padding: 12px 16px !important;
+    text-align: start !important;
+}
+.contact-icon {
+    order: 0 !important;
+    flex: 0 0 38px !important;
+    width: 38px !important;
+    height: 38px !important;
+    margin: 0 !important;
+}
+.contact-label {
+    order: 1 !important;
+    flex: 1 1 auto !important;
+    width: auto !important;
+    text-align: start !important;
+}
+#working-hours-toggle .contact-icon { order: 0 !important; }
+#working-hours-toggle .contact-label {
+    order: 1 !important;
+    text-align: start !important;
+}
+#working-hours-toggle .contact-chevron {
+    inset-inline-start: 16px !important;
+    top: 50% !important;
+}
+@media (max-width: 380px) {
+    .contact-button { min-height: 70px !important; padding: 10px 12px !important; }
+    .contact-icon { flex-basis: 34px !important; width: 34px !important; height: 34px !important; }
+}
+
+
+/* =========================================================
+   UPDATE 10 — DISABLED SERVICE CARDS
+   Keep the existing layout; make unavailable services clearly inactive.
+   ========================================================= */
+
+.service-card.service-card-disabled,
+.service-card:disabled {
+    background: #F4F7F5 !important;
+    border: 1px solid rgba(87, 112, 100, 0.14) !important;
+    box-shadow: none !important;
+    color: #899790 !important;
+    opacity: 1 !important;
+    cursor: not-allowed !important;
+    filter: saturate(0.45);
+}
+
+.service-card.service-card-disabled .service-title,
+.service-card:disabled .service-title {
+    color: #87958E !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    line-height: 1.5 !important;
+}
+
+.service-card.service-card-disabled .service-coming-soon,
+.service-card:disabled .service-coming-soon {
+    color: #A1ADA6 !important;
+    font-size: 11px !important;
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+}
+
+.service-card.service-card-disabled:hover,
+.service-card:disabled:hover,
+.service-card.service-card-disabled:active,
+.service-card:disabled:active {
+    background: #F4F7F5 !important;
+    border-color: rgba(87, 112, 100, 0.14) !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
