@@ -2904,3 +2904,16 @@ grid-template-columns: 1fr;
     line-height: 1.2;
     text-align: center;
 }
+
+
+/* FIX — keep the opening switch above the expanding gate layer and tappable on mobile. */
+#gate-screen .start-button {
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+#experience.gate-expanding .start-button {
+    pointer-events: none;
+}
