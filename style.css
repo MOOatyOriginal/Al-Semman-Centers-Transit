@@ -2778,29 +2778,31 @@ grid-template-columns: 1fr;
     transition: none !important;
 }
 
-/* The track has ~162ms of silence at the start and its final audible note
-   ends at ~7.285s. Start the first movement on that first beat and finish
-   the Arabic descriptor on the final audible note. */
+/* Music has ~160ms of encoded lead-in. The first visible logo movement
+   starts with the first audible beat; the description finishes at ~7.29s,
+   matching the last audible note (~7.285s) of the supplied track. */
+/* A more expressive, overlapping build: the full Arabic lockup finishes
+   around 5.7s, leaving a clean musical tail before the campaign transition. */
 #experience.logo-building .logo-part.apple {
-    animation: alAppleGrow 1900ms cubic-bezier(.16,1.18,.32,1) 162ms both !important;
+    animation: alAppleGrow 1900ms cubic-bezier(.16,1.18,.32,1) 100ms both !important;
 }
 #experience.logo-building .logo-part.knee {
-    animation: alKneeGrow 1750ms cubic-bezier(.16,1.16,.3,1) 782ms both !important;
+    animation: alKneeGrow 1750ms cubic-bezier(.16,1.16,.3,1) 720ms both !important;
 }
 #experience.logo-building .logo-part.human {
-    animation: alHumanGrow 1500ms cubic-bezier(.18,1.12,.28,1) 1382ms both !important;
+    animation: alHumanGrow 1500ms cubic-bezier(.18,1.12,.28,1) 1320ms both !important;
 }
 #experience.logo-building .logo-part.dots {
-    animation: alDotsGrow 1150ms cubic-bezier(.18,1.2,.3,1) 2242ms both !important;
+    animation: alDotsGrow 1150ms cubic-bezier(.18,1.2,.3,1) 2180ms both !important;
 }
 #experience.logo-building .logo-part.leaf {
-    animation: alLeafGrow 1250ms cubic-bezier(.18,1.18,.3,1) 2842ms both !important;
+    animation: alLeafGrow 1250ms cubic-bezier(.18,1.18,.3,1) 2780ms both !important;
 }
 #experience.logo-building .logo-part.logo-name {
-    animation: alNameReveal 1250ms cubic-bezier(.18,1.12,.28,1) 3712ms both !important;
+    animation: alNameReveal 1250ms cubic-bezier(.18,1.12,.28,1) 3650ms both !important;
 }
 #experience.logo-building .logo-part.logo-description {
-    animation: alDescriptionRTL 1300ms cubic-bezier(.2,1.08,.3,1) 5985ms both !important;
+    animation: alDescriptionRTL 1300ms cubic-bezier(.2,1.08,.3,1) 4380ms both !important;
 }
 
 /* Contact controls: icon at the same RTL-side edge in every row,
@@ -2915,10 +2917,3 @@ grid-template-columns: 1fr;
     -webkit-tap-highlight-color: transparent;
 }
 #experience.gate-expanding #gate-screen .start-button { pointer-events: none; }
-
-
-/* Hold the finished logo, then fade it over the full two-second pause. */
-#experience.logo-fading #intro-screen {
-    opacity: 0 !important;
-    transition: opacity 2000ms ease !important;
-}

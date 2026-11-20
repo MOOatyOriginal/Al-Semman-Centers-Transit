@@ -24,8 +24,8 @@
 
     const TIMING = {
         gateExpansion: 1660,
-        logoAudioSync: 7285,
-        logoFadeHold: 2000,
+        logoFormation: 5900,
+        logoHold: 450,
         campaignHold: 2000
     };
 
@@ -101,18 +101,17 @@
         // Audio begins with the logo formation, never on the initial button press.
         const audioStarted = startIntroAudio();
 
-        // The Arabic descriptor completes on the final audible note.
-        if (await audioStarted) {
-            await wait(TIMING.logoAudioSync);
-        } else {
-            await wait(TIMING.logoAudioSync);
-        }
+        // Let the complete logo lockup settle before the campaign scene.
+        await wait(TIMING.logoFormation);
+        await wait(TIMING.logoHold);
 
-        // Fade the complete logo during its two-second hold, then reveal
-        // the 30-year campaign screen.
-        experience.classList.add("logo-fading");
-        await wait(TIMING.logoFadeHold);
         experience.classList.add("campaign-active");
+
+        // Keep the campaign transition on the music tail instead of cutting
+        // the soundtrack while the final Arabic line is still appearing.
+        if (await audioStarted) {
+            await waitForAudioEnd();
+        }
 
         await wait(TIMING.campaignHold);
         finishExperience();
