@@ -5,7 +5,7 @@
 
 @font-face {
     font-family: "Alexandria";
-    src: url("../04 - ASSETS/fonts/Alexandria-VariableFont_wght.ttf") format("truetype");
+    src: url("04 - ASSETS/fonts/Alexandria-VariableFont_wght.ttf") format("truetype");
     font-style: normal;
     font-weight: 100 900;
     font-display: swap;
@@ -13,7 +13,7 @@
 
 @font-face {
     font-family: "Cairo";
-    src: url("../04 - ASSETS/fonts/Cairo-VariableFont_slnt,wght.ttf") format("truetype");
+    src: url("04 - ASSETS/fonts/Cairo-VariableFont_slnt,wght.ttf") format("truetype");
     font-style: normal;
     font-weight: 200 900;
     font-display: swap;
