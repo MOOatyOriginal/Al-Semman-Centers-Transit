@@ -2781,26 +2781,28 @@ grid-template-columns: 1fr;
 /* Music has ~160ms of encoded lead-in. The first visible logo movement
    starts with the first audible beat; the description finishes at ~7.29s,
    matching the last audible note (~7.285s) of the supplied track. */
+/* A more expressive, overlapping build: the full Arabic lockup finishes
+   around 5.7s, leaving a clean musical tail before the campaign transition. */
 #experience.logo-building .logo-part.apple {
-    animation: alAppleGrow 2440ms cubic-bezier(.22,.72,.18,1) 160ms both !important;
+    animation: alAppleGrow 1900ms cubic-bezier(.16,1.18,.32,1) 100ms both !important;
 }
 #experience.logo-building .logo-part.knee {
-    animation: alKneeGrow 2225ms cubic-bezier(.22,.72,.18,1) 1000ms both !important;
+    animation: alKneeGrow 1750ms cubic-bezier(.16,1.16,.3,1) 720ms both !important;
 }
 #experience.logo-building .logo-part.human {
-    animation: alHumanGrow 2070ms cubic-bezier(.2,.76,.2,1) 1840ms both !important;
+    animation: alHumanGrow 1500ms cubic-bezier(.18,1.12,.28,1) 1320ms both !important;
 }
 #experience.logo-building .logo-part.dots {
-    animation: alDotsGrow 1640ms cubic-bezier(.2,.76,.2,1) 2780ms both !important;
+    animation: alDotsGrow 1150ms cubic-bezier(.18,1.2,.3,1) 2180ms both !important;
 }
 #experience.logo-building .logo-part.leaf {
-    animation: alLeafGrow 1855ms cubic-bezier(.2,.76,.2,1) 3520ms both !important;
+    animation: alLeafGrow 1250ms cubic-bezier(.18,1.18,.3,1) 2780ms both !important;
 }
 #experience.logo-building .logo-part.logo-name {
-    animation: alNameReveal 1620ms cubic-bezier(.2,.78,.2,1) 4490ms both !important;
+    animation: alNameReveal 1250ms cubic-bezier(.18,1.12,.28,1) 3650ms both !important;
 }
 #experience.logo-building .logo-part.logo-description {
-    animation: alDescriptionRTL 1700ms cubic-bezier(.2,.78,.2,1) 5590ms both !important;
+    animation: alDescriptionRTL 1300ms cubic-bezier(.2,1.08,.3,1) 4380ms both !important;
 }
 
 /* Contact controls: icon at the same RTL-side edge in every row,

@@ -24,8 +24,8 @@
 
     const TIMING = {
         gateExpansion: 1660,
-        logoFormation: 7300,
-        logoHold: 1000,
+        logoFormation: 5900,
+        logoHold: 450,
         campaignHold: 2000
     };
 
@@ -101,11 +101,14 @@
         // Audio begins with the logo formation, never on the initial button press.
         const audioStarted = startIntroAudio();
 
+        // Let the complete logo lockup settle before the campaign scene.
         await wait(TIMING.logoFormation);
         await wait(TIMING.logoHold);
 
         experience.classList.add("campaign-active");
 
+        // Keep the campaign transition on the music tail instead of cutting
+        // the soundtrack while the final Arabic line is still appearing.
         if (await audioStarted) {
             await waitForAudioEnd();
         }
