@@ -174,6 +174,12 @@
        06. EVENTS & INITIAL STATE
     ===================================================== */
 
+    // Pointer events cover touch interaction reliably; click remains for keyboard/accessibility.
+    startButton.addEventListener("pointerup", (event) => {
+        if (!event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
+        startExperience();
+    });
+
     startButton.addEventListener("click", startExperience);
 
     if (workingHoursToggle && workingHoursPanel) {

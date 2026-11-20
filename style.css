@@ -2906,7 +2906,9 @@ grid-template-columns: 1fr;
 }
 
 
-/* FIX — keep the opening switch above the expanding gate layer and tappable on mobile. */
+/* START GATE — keep the control above the decorative transition layer. */
+#gate-screen { pointer-events: auto; }
+#gate-screen .gate-transition-circle { pointer-events: none; }
 #gate-screen .start-button {
     position: relative;
     z-index: 2;
@@ -2914,6 +2916,4 @@ grid-template-columns: 1fr;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
 }
-#experience.gate-expanding .start-button {
-    pointer-events: none;
-}
+#experience.gate-expanding #gate-screen .start-button { pointer-events: none; }
