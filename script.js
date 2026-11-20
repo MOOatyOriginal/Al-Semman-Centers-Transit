@@ -168,28 +168,7 @@
     }
 
     /* =====================================================
-       06. ICON FORMAT FALLBACK (SVG -> PNG)
-    ===================================================== */
-
-    document.querySelectorAll("img[data-icon-fallback]").forEach((icon) => {
-        const usePngFallback = () => {
-            const fallback = icon.dataset.iconFallback;
-            if (!fallback || icon.dataset.fallbackAttempted === "true") return;
-
-            icon.dataset.fallbackAttempted = "true";
-            icon.src = fallback;
-        };
-
-        icon.addEventListener("error", usePngFallback);
-
-        // Also catch SVG files that failed before this deferred script ran.
-        if (icon.complete && icon.naturalWidth === 0) {
-            usePngFallback();
-        }
-    });
-
-    /* =====================================================
-       07. EVENTS & INITIAL STATE
+       06. EVENTS & INITIAL STATE
     ===================================================== */
 
     startButton.addEventListener("click", startExperience);

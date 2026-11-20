@@ -2761,141 +2761,7 @@ grid-template-columns: 1fr;
 
 
 /* =========================================================
-   FINAL APPROVED UPDATE — SVG ORGANIC LOGO REVEAL + ICON STACK
-   ========================================================= */
-
-/* Exact shared SVG canvas; no per-element scaling or repositioning. */
-.logo-stage { width: min(78vw, 430px); }
-.logo-symbol, .logo-words { isolation: isolate; }
-.logo-part {
-    object-fit: contain;
-    filter: none !important;
-    backface-visibility: hidden;
-}
-.logo-part.apple { z-index: 1; }
-.logo-part.knee { z-index: 2; }
-.logo-part.human { z-index: 4; }
-.logo-part.dots { z-index: 5; }
-.logo-part.leaf { z-index: 6; }
-.logo-part.logo-name { z-index: 8; }
-.logo-part.logo-description { z-index: 9; }
-
-/* Smooth, connected reveal. The five vector shapes keep their original geometry. */
-#experience.logo-building .logo-part.apple,
-#experience.logo-building .logo-part.knee,
-#experience.logo-building .logo-part.human,
-#experience.logo-building .logo-part.dots,
-#experience.logo-building .logo-part.leaf,
-#experience.logo-building .logo-part.logo-name,
-#experience.logo-building .logo-part.logo-description {
-    visibility: visible;
-    animation-fill-mode: both;
-    animation-timing-function: cubic-bezier(.22,.72,.18,1);
-    filter: none !important;
-    will-change: opacity, clip-path, transform;
-}
-
-#experience.logo-building .logo-part.apple {
-    animation: alAppleGrow 1250ms cubic-bezier(.22,.72,.18,1) 0ms both;
-}
-#experience.logo-building .logo-part.knee {
-    animation: alKneeGrow 1140ms cubic-bezier(.22,.72,.18,1) 430ms both;
-}
-#experience.logo-building .logo-part.human {
-    animation: alHumanGrow 1060ms cubic-bezier(.2,.76,.2,1) 860ms both;
-}
-#experience.logo-building .logo-part.dots {
-    animation: alDotsGrow 840ms cubic-bezier(.2,.76,.2,1) 1340ms both;
-}
-#experience.logo-building .logo-part.leaf {
-    animation: alLeafGrow 950ms cubic-bezier(.2,.76,.2,1) 1720ms both;
-}
-#experience.logo-building .logo-part.logo-name {
-    animation: alNameReveal 830ms cubic-bezier(.2,.78,.2,1) 2220ms both;
-}
-#experience.logo-building .logo-part.logo-description {
-    animation: alDescriptionRTL 870ms cubic-bezier(.2,.78,.2,1) 2780ms both;
-}
-
-@keyframes alAppleGrow {
-    0% { opacity:0; clip-path:ellipse(0% 0% at 49% 53%); transform:scale(.93); }
-    62% { opacity:1; clip-path:ellipse(48% 53% at 49% 53%); transform:scale(1.012); }
-    100% { opacity:1; clip-path:ellipse(76% 76% at 49% 53%); transform:scale(1); }
-}
-@keyframes alKneeGrow {
-    0% { opacity:0; clip-path:ellipse(0% 0% at 69% 60%); transform:scale(.94); }
-    68% { opacity:1; clip-path:ellipse(48% 54% at 69% 60%); transform:scale(1.008); }
-    100% { opacity:1; clip-path:ellipse(78% 78% at 69% 60%); transform:scale(1); }
-}
-@keyframes alHumanGrow {
-    0% { opacity:0; clip-path:inset(100% 0 0 0); transform:translateY(1.8%) scale(.99); }
-    100% { opacity:1; clip-path:inset(0); transform:translateY(0) scale(1); }
-}
-@keyframes alDotsGrow {
-    0% { opacity:0; clip-path:ellipse(0% 0% at 48% 55%); transform:scale(.94); }
-    100% { opacity:1; clip-path:ellipse(82% 82% at 48% 55%); transform:scale(1); }
-}
-@keyframes alLeafGrow {
-    0% { opacity:0; clip-path:ellipse(0% 0% at 51% 23%); transform:scale(.92); }
-    100% { opacity:1; clip-path:ellipse(82% 82% at 51% 23%); transform:scale(1); }
-}
-@keyframes alNameReveal {
-    0% { opacity:0; clip-path:inset(100% 0 0 0); transform:translateY(1.2%); }
-    100% { opacity:1; clip-path:inset(0); transform:translateY(0); }
-}
-/* Arabic description specifically reveals from right to left. */
-@keyframes alDescriptionRTL {
-    0% { opacity:0; clip-path:inset(0 0 0 100%); transform:translateX(-.6%); }
-    100% { opacity:1; clip-path:inset(0); transform:translateX(0); }
-}
-
-/* Contact buttons: label first, icon below it; all icons share the same centered axis. */
-.contact-button {
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    min-height:100px;
-    padding:14px 16px;
-    text-align:center;
-}
-.contact-label {
-    order:1;
-    flex:0 1 auto;
-    width:100%;
-    text-align:center;
-}
-.contact-icon {
-    order:2;
-    width:38px;
-    height:38px;
-    flex:0 0 38px;
-    margin-inline:auto;
-}
-.contact-icon img, .contact-icon svg { display:block; width:24px; height:24px; object-fit:contain; }
-#working-hours-toggle .contact-label { order:1; }
-#working-hours-toggle .contact-icon { order:2; }
-#working-hours-toggle .contact-chevron {
-    position:absolute;
-    inset-inline-start:16px;
-    top:50%;
-    margin:0;
-    transform:translateY(-50%);
-}
-#working-hours-toggle[aria-expanded="true"] .contact-chevron {
-    transform:translateY(-50%) rotate(180deg);
-}
-@media (max-width:380px) {
-    .contact-button { min-height:92px; padding:12px 10px; }
-    .contact-icon { width:36px; height:36px; flex-basis:36px; }
-}
-@media (prefers-reduced-motion:reduce) {
-    #experience.logo-building .logo-part { animation-duration:.01ms !important; animation-delay:0ms !important; }
-}
-
-
-/* =========================================================
+   /* =========================================================
    UPDATE 07 — MUSIC-SYNCED LOGO REVEAL + CLEAN GATE CUT
    ========================================================= */
 
@@ -2978,88 +2844,7 @@ grid-template-columns: 1fr;
 
 
 /* =========================================================
-   UPDATE 07 — MUSIC-SYNCED LOGO REVEAL + CLEAN GATE CUT
-   ========================================================= */
-
-/* The gate circle reaches full-screen at 540ms + 1120ms.
-   Switch to the logo scene on that exact frame: no secondary fade/lag. */
-#experience.intro-started #gate-screen {
-    opacity: 0 !important;
-    visibility: hidden !important;
-    transition: none !important;
-}
-#experience.intro-started #intro-screen {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transition: none !important;
-}
-
-/* Music has ~160ms of encoded lead-in. The first visible logo movement
-   starts with the first audible beat; the description finishes at ~7.29s,
-   matching the last audible note (~7.285s) of the supplied track. */
-#experience.logo-building .logo-part.apple {
-    animation: alAppleGrow 2440ms cubic-bezier(.22,.72,.18,1) 160ms both !important;
-}
-#experience.logo-building .logo-part.knee {
-    animation: alKneeGrow 2225ms cubic-bezier(.22,.72,.18,1) 1000ms both !important;
-}
-#experience.logo-building .logo-part.human {
-    animation: alHumanGrow 2070ms cubic-bezier(.2,.76,.2,1) 1840ms both !important;
-}
-#experience.logo-building .logo-part.dots {
-    animation: alDotsGrow 1640ms cubic-bezier(.2,.76,.2,1) 2780ms both !important;
-}
-#experience.logo-building .logo-part.leaf {
-    animation: alLeafGrow 1855ms cubic-bezier(.2,.76,.2,1) 3520ms both !important;
-}
-#experience.logo-building .logo-part.logo-name {
-    animation: alNameReveal 1620ms cubic-bezier(.2,.78,.2,1) 4490ms both !important;
-}
-#experience.logo-building .logo-part.logo-description {
-    animation: alDescriptionRTL 1700ms cubic-bezier(.2,.78,.2,1) 5590ms both !important;
-}
-
-/* Contact controls: icon at the same RTL-side edge in every row,
-   title beside it, and labels align to the opposite edge. */
-.contact-button {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    gap: 12px !important;
-    min-height: 76px !important;
-    padding: 12px 16px !important;
-    text-align: start !important;
-}
-.contact-icon {
-    order: 0 !important;
-    flex: 0 0 38px !important;
-    width: 38px !important;
-    height: 38px !important;
-    margin: 0 !important;
-}
-.contact-label {
-    order: 1 !important;
-    flex: 1 1 auto !important;
-    width: auto !important;
-    text-align: start !important;
-}
-#working-hours-toggle .contact-icon { order: 0 !important; }
-#working-hours-toggle .contact-label {
-    order: 1 !important;
-    text-align: start !important;
-}
-#working-hours-toggle .contact-chevron {
-    inset-inline-start: 16px !important;
-    top: 50% !important;
-}
-@media (max-width: 380px) {
-    .contact-button { min-height: 70px !important; padding: 10px 12px !important; }
-    .contact-icon { flex-basis: 34px !important; width: 34px !important; height: 34px !important; }
-}
-
-
-/* =========================================================
+   /* =========================================================
    UPDATE 10 — DISABLED SERVICE CARDS
    Keep the existing layout; make unavailable services clearly inactive.
    ========================================================= */
@@ -3099,4 +2884,21 @@ grid-template-columns: 1fr;
     border-color: rgba(87, 112, 100, 0.14) !important;
     box-shadow: none !important;
     transform: none !important;
+}
+
+
+/* LinkedIn is displayed as a coming-soon channel until its page is available. */
+.social-link.linkedin { position: relative; overflow: hidden; opacity: .78; }
+.social-link.linkedin .linkedin-coming-soon {
+    position: absolute;
+    inset-inline: 1px;
+    bottom: 3px;
+    padding: 1px 0;
+    border-radius: 8px;
+    background: rgba(255,255,255,.94);
+    color: var(--green-dark);
+    font-size: 7px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
 }
